@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Homepage
+{% endblock title %}
+<h1>URL Shortner.</h1>
+<h2> Hello, Aliens </h2>
+
+
+{%block main%}
+<!-- get_flashed_messages() -->
+{% for message in get_flashed_messages() %}
+<h3>{{message}}</h3>
+{% endfor %}
+
+<form action="{{ url_for('urlshortapp.your_url') }}" method="post">
+    <label for="url">Enter Your URL : </label>
+    <input type="url" name="url" value="" required>
+    <br>
+    <label for="code">Enter Your Code : </label>
+    <input type="text" name="code" value="" required>
+    <br>
+    <input type="submit" value="Shorten">
+</form>
+
+<hr>
+
+<form action="{{ url_for('urlshortapp.your_url')}}" method="post" enctype="multipart/form-data">
+    <label for="file">Upload File : </label>
+    <input type="file" name="file">
+    <br>
+    <label for="code">Code : </label>
+    <input type="text" name="code">
+    <br>
+    <input type="submit" value="Shorten">
+</form>
+
+
+<div>
+    <h1>Codes You've Created!!</h1>
+    <ul>
+        {% for key, value in code %}
+        <li><a href="{{ url_for('urlshortapp.redirect_to_url_from_code',code=key)}}">{{key}} </a> created at : {{value}}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
