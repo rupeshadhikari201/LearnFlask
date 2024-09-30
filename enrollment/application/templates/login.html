@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+        <form name="login" action="" , method="POST">
+            {{ form.hidden_tags }}
+            <p>
+                {{ form.email.label }}
+                {{ form.email(size=32) }}
+            </p>
+            <p>
+                {{ form.password.label }}
+                {{ form.password(size=32) }}
+            </p>
+            <p>
+                {{ form.remember_me.label }}
+                {{ form.remember_me }}
+            </p>
+            <p>
+                {{ form.submit() }}
+            </p>
+        </form>
+
+
+    </div>
+</div>
+{% endblock %}
